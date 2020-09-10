@@ -2,7 +2,7 @@
 
 /**
  * Code by C
- * @version 1.35 2020-08-12
+ * @version 1.40 2020-09-10
  * @author MPX
 */
 
@@ -69,7 +69,7 @@ int DT_Login()
 	if (!strcmp(username, true_username))  //CASE_1：用户名输入正确
 	{
 		printf("请输入密码:");
-		scanf_s("%s", password, MAXLEN);  //取消回显且显示*的地方有点问题，可以使用此代码取消该功能并开启回显。
+		scanf_s("%s", password, MAXLEN); 
 		if (!strcmp(password, true_password))  //CASE_1_1：密码输入正确
 		{
 			return 1;
@@ -106,15 +106,29 @@ int DT_Login()
 int DT_Database_Func()
 {
 	system("cls");
-	int flag = 0, func = 0;
+	int flag = 0, flag_1 = 0, func = 0;
 
 	printf("-----------------------------------\n");
 	printf("功能界面\n");
 	printf("-----------------------------------\n");
 	printf("1.创建代码数据库\n2.删除代码数据库\n3.调用代码数据库\n4.退出程序\n");
 	printf("-----------------------------------\n");
-	printf("请输入需要使用的功能序号：");
-	scanf_s("%d", &func);
+	while (flag_1 == 0)
+	{
+		printf("请输入需要使用的功能序号：");
+		scanf_s("%d", &func);
+		if (func <= 4 && func >= 1)
+		{
+			flag_1 = 1;
+			break;
+		}
+		else
+		{
+			printf("-----------------------------------\n");
+			printf("无效输入!\n");
+		}
+	}
+	
 
 	switch (func)
 	{
@@ -141,7 +155,7 @@ int DT_Database_Func()
 int DT_Table_Func(char* db_url)
 {
 	system("cls");
-	int flag = 0, func = 0, count = 0;
+	int flag = 0, func = 0, count = 0, flag_1 = 0;
 	char db_name[13] = { 0 }, SID[10], haven[16], file_haven[45]; char* p;
 	char setting[45];
 	errno_t err, err1;
@@ -182,8 +196,21 @@ int DT_Table_Func(char* db_url)
 
 	printf("-----------------------------------\n");
 	printf("1.创建代码数据文件\n2.删除代码数据文件\n3.查找代码数据文件\n4.添加代码【暂不支持】\n5.删除代码【暂不支持】\n6.修改代码【暂不支持】\n7.退出程序\n");
-	printf("请输入需要使用的功能：");
-	scanf_s("%d", &func);
+	while (flag_1 == 0)
+	{
+		printf("请输入需要使用的功能序号：");
+		scanf_s("%d", &func);
+		if (func <= 3 && func >= 1)
+		{
+			flag_1 = 1;
+			break;
+		}
+		else
+		{
+			printf("-----------------------------------\n");
+			printf("无效输入!\n");
+		}
+	}
 
 	switch (func)
 	{
